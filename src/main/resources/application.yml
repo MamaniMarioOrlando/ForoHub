@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: ForoHubChallenge
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${HOST_FORO_DB}/${NAME_DB_FORO}
+    username: ${USER_NAME_DB}
+    password: ${PASSWORD_FORO_DB}
+
+server:
+  error:
+    include-stacktrace: never
+
+api:
+  security:
+    secret: ${JWT_SECRET:12345}
