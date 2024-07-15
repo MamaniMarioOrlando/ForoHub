@@ -29,7 +29,7 @@ public class TopicEntity {
     @JoinColumn(name = "user_id")
     private UserEntity author;
 
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name = "curse_id")
     private CourseEntity course;
     @OneToMany(mappedBy = "topicEntity")
@@ -55,5 +55,8 @@ public class TopicEntity {
             this.content = updateTopicDto.content();
         }
         this.setCreationDate(LocalDateTime.now());
+    }
+    public void desactivateTopic(){
+        this.status = false;
     }
 }

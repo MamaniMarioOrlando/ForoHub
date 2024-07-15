@@ -7,7 +7,7 @@ public record CreateResponseDto(
         @NotNull
         Long idUser,
         @NotNull
-        Long idTpic,
+        Long idTopic,
         @NotBlank
         String content
 ) {

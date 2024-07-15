@@ -28,8 +28,8 @@ public class SecurityConfiguratioins {
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/topics").permitAll()
-                        .requestMatchers(HttpMethod.POST, "/auth").permitAll()
-                        .requestMatchers("/swagger-ui.html","/v3/api-doc/**","/swagger-ui/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth","/users/register").permitAll()
+                        .requestMatchers("/swagger-ui.html","/v3/api-docs/**","/swagger-ui/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);

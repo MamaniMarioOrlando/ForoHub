@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ITopicRepository extends JpaRepository<TopicEntity, Long> {
-    Page<TopicEntity> findAllByStatusTrueOrderByCreationDataAsc(Pageable pageable);
+    Page<TopicEntity> findAllByStatusTrueOrderByCreationDateAsc(Pageable pageable);
     @Query("SELECT t FROM TopicEntity t WHERE LOWER(REPLACE(t.course.name, ' ', '')) LIKE LOWER(CONCAT('%', REPLACE(:courseName, ' ', ''), '%'))")
     Page<TopicEntity> findAllByCourseNameIgnoreCase(@Param("courseName") String courseName, Pageable pageable);
 
