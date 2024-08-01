@@ -1,4 +1,4 @@
 package com.ForoHub.ForoHubChallenge.model.User;
 
-public record UserLoginDto(String username, String password) {
+public record UserLoginDto(String email, String password) {
 }

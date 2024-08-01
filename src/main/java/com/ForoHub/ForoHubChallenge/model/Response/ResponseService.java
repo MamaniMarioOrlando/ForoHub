@@ -25,7 +25,7 @@ public class ResponseService {
     public ResponseDto create(CreateResponseDto createResponseDto){
         Optional<UserEntity> userOptional = userRepository.findById(createResponseDto.idUser());
         if(userOptional.isEmpty()){
-            throw new RuntimeException(("user not foun"));
+            throw new RuntimeException(("user not found"));
         }
         UserEntity user = userOptional.get();
 
@@ -41,7 +41,7 @@ public class ResponseService {
                 response.getAuthor().getUsername(),
                 response.getTopicEntity().getTitle(),
                 response.getContent(),
-                response.getCreatioDate()
+                response.getCreationDate()
                 );
     }
 }

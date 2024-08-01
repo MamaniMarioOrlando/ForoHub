@@ -26,7 +26,7 @@ public class TopicController {
     private TopicUtils topicUtils;
 
     @GetMapping
-    public ResponseEntity<Page<ListOfTopicDto>> topicLIst(@PageableDefault(size = 4) Pageable pageable){
+    public ResponseEntity<Page<ListOfTopicDto>> topicList(@PageableDefault(size = 4) Pageable pageable){
         return ResponseEntity.ok(topicRepository.findAllByStatusTrueOrderByCreationDateAsc(pageable)
                 .map(topicUtils::mapToListOfTopics));
     }
@@ -46,12 +46,16 @@ public class TopicController {
     @PutMapping("/update/{id}")
     @Transactional
     public ResponseEntity<TopicResponseDto> updateTopic(@PathVariable Long id, @RequestBody @Valid UpdateTopicDto updateTopicDto){
-        TopicEntity topicEntity = topicRepository.findById(id)
+        /*TopicEntity topicEntity = topicRepository.findById(id)
                 .orElseThrow(() -> new ResourcedNotFoundException("Topic","id",id));
         topicEntity.updateTopic(updateTopicDto);
 
         topicRepository.save(topicEntity);
         TopicResponseDto topicResponseDto = topicUtils.topicWithResponses(topicEntity);
+        return ResponseEntity.ok(topicResponseDto);*/
+
+        TopicEntity updatedTopic = topicService.update(id, updateTopicDto);
+        TopicResponseDto topicResponseDto = topicUtils.topicWithResponses(updatedTopic);
         return ResponseEntity.ok(topicResponseDto);
     }
     @PostMapping

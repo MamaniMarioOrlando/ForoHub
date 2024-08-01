@@ -21,7 +21,7 @@ public class TopicUtils {
                            response.getAuthor().getUsername(),
                            topicEntity.getTitle(),
                            response.getContent(),
-                           response.getCreatioDate()
+                           response.getCreationDate()
                         ))
                         .collect(Collectors.toList()) : Collections.emptyList();
         return new TopicResponseDto(
@@ -41,7 +41,7 @@ public class TopicUtils {
                                 response.getAuthor().getUsername(),
                                 topicEntity.getTitle(),
                                 response.getContent(),
-                                response.getCreatioDate()
+                                response.getCreationDate()
                         ))
                         .collect(Collectors.toList()) : Collections.emptyList();
         return new ListOfTopicDto(

@@ -17,7 +17,7 @@ public record ResponseDto(
                 responseEntidad.getAuthor().getUsername(),
                 responseEntidad.getTopicEntity().getTitle(),
                 responseEntidad.getContent(),
-                responseEntidad.getCreatioDate()
+                responseEntidad.getCreationDate()
         );
     }
 }

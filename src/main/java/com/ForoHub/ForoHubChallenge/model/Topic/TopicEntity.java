@@ -41,20 +41,33 @@ public class TopicEntity {
         this.course = course;
         this.content = topicDto.content();
         this.creationDate = LocalDateTime.now();
-        this.author = author;
+        this.author = user;
     }
 
-    public void updateTopic(UpdateTopicDto updateTopicDto){
+    /*public void updateTopic(UpdateTopicDto updateTopicDto){
         if(updateTopicDto.title() != null){
             this.title = updateTopicDto.title();
         }
-        if(updateTopicDto.couseName() != null){
+        if(updateTopicDto.courseName() != null){
             this.course = course;
         }
         if(updateTopicDto.content() != null){
             this.content = updateTopicDto.content();
         }
         this.setCreationDate(LocalDateTime.now());
+    }*/
+    public void updateTopic(UpdateTopicDto updateTopicDto, CourseEntity newCourse) {
+        if(updateTopicDto.title() != null){
+            this.title = updateTopicDto.title();
+        }
+        if(updateTopicDto.courseName() != null && newCourse != null) {
+            this.course = newCourse; // Asignar el curso encontrado o proporcionado
+        }
+        if(updateTopicDto.content() != null){
+            this.content = updateTopicDto.content();
+        }
+        // Actualizar la fecha de última modificación en lugar de la fecha de creación
+        this.creationDate = LocalDateTime.now(); // Considera agregar un campo 'lastUpdated'
     }
     public void desactivateTopic(){
         this.status = false;

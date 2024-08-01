@@ -7,7 +7,6 @@ import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.config.annotation.web.SecurityMarker;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -38,7 +37,7 @@ public class ResponseController {
                 responseEntidad.getAuthor().getUsername(),
                 responseEntidad.getTopicEntity().getTitle(),
                 responseEntidad.getContent(),
-                responseEntidad.getCreatioDate()
+                responseEntidad.getCreationDate()
                 ));
     }
     @DeleteMapping("/{id}")

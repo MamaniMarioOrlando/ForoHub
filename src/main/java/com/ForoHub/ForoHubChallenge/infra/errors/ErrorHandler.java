@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class ErrorHandler {
     @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseEntity traarError404(){
+    public ResponseEntity tratarError404(){
         return ResponseEntity.notFound().build();
     }
 
@@ -24,12 +24,12 @@ public class ErrorHandler {
     }
 
     @ExceptionHandler(IntegrityValidation.class)
-    public ResponseEntity errorHandlerValidacionesDeInegridad(Exception e){
+    public ResponseEntity errorHandlerValidacionesDeIntegridad(Exception e){
         return ResponseEntity.badRequest().body(e.getMessage());
     }
 
     @ExceptionHandler(ValidationException.class)
-    public ResponseEntity errorHHandlerValidacionesDeNegocio(Exception e){
+    public ResponseEntity errorHandlerValidacionesDeNegocio(Exception e){
         return ResponseEntity.badRequest().body(e.getMessage());
     }
 
@@ -39,9 +39,10 @@ public class ErrorHandler {
     }
 
     @ExceptionHandler(ResourcedNotFoundException.class)
-    public ResponseEntity handleResourcedNotFound(ResourcedNotFoundException e){
+    public ResponseEntity handleResourceNotFound(ResourcedNotFoundException e){
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
     }
+
     public record ValidationErrorData(String campo, String error){
         public ValidationErrorData(FieldError error){
             this(error.getField(), error.getDefaultMessage());

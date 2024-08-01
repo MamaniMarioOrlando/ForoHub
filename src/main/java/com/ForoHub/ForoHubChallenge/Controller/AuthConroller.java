@@ -24,7 +24,7 @@ public class AuthConroller {
     @PostMapping
     public ResponseEntity authenticationUser(@RequestBody @Valid UserLoginDto userLoginDto){
         Authentication authToken = new UsernamePasswordAuthenticationToken(
-                userLoginDto.username(),
+                userLoginDto.email(),
                 userLoginDto.password()
         );
         var authenticatedUser = authenticationManager.authenticate(authToken);

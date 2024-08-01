@@ -1,5 +1,8 @@
-package com.ForoHub.ForoHubChallenge.model.User;
+package com.ForoHub.ForoHubChallenge.service;
 
+import com.ForoHub.ForoHubChallenge.model.User.DataNewUser;
+import com.ForoHub.ForoHubChallenge.model.User.IUserRepository;
+import com.ForoHub.ForoHubChallenge.model.User.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -18,6 +21,5 @@ public class UserService {
         newUser.setPassword(passwordEncoder.encode(dataNewUser.password()));
 
         return userRepository.save(newUser);
-
     }
 }

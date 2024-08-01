@@ -8,7 +8,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity(name = "Response")
@@ -25,7 +24,7 @@ public class ResponseEntidad {
     @ManyToOne
     @JoinColumn(name = "topic_id")
     private TopicEntity topicEntity;
-    private LocalDateTime creatioDate;
+    private LocalDateTime creationDate;
     @ManyToOne
     @JoinColumn(name = "author_id")
     private UserEntity author;
@@ -34,7 +33,7 @@ public class ResponseEntidad {
     public ResponseEntidad(CreateResponseDto createResponseDto, UserEntity author, TopicEntity topicEntity){
         this.content = createResponseDto.content();
         this.topicEntity = topicEntity;
-        this.creatioDate = LocalDateTime.now();
+        this.creationDate = LocalDateTime.now();
         this.author = author;
         this.solution = true;
     }
@@ -48,6 +47,6 @@ public class ResponseEntidad {
         if(data.content() != null){
             this.content = data.content();
         }
-        this.setCreatioDate(LocalDateTime.now());
+        this.setCreationDate(LocalDateTime.now());
     }
 }

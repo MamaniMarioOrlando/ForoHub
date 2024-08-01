@@ -4,9 +4,10 @@ import com.ForoHub.ForoHubChallenge.model.Course.CourseEntity;
 import com.ForoHub.ForoHubChallenge.model.Response.ResponseEntidad;
 import com.ForoHub.ForoHubChallenge.model.Topic.TopicEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,17 +15,23 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
-@Entity
+@Entity(name = "UserEntity")
 @Table(name="users")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(of = "id")
 public class UserEntity implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull(message="El nombre es obligatorio")
     private String username;
+    @NotNull(message="El email no puede ser nulo")
+    @Email(message= "Debe ser una direccion de correo electronico valido")
     private String email;
+    @NotNull(message = "El campo clave no puede ser nulo")
+    @Size(min = 6, max = 300, message = "La clave debe tener entre 6 y 300 caracteres")
     private String password;
 
     @ManyToMany
@@ -52,7 +59,7 @@ public class UserEntity implements UserDetails {
 
     @Override
     public String getUsername() {
-        return username;
+        return email;
     }
     @Override
     public boolean isAccountNonExpired() {

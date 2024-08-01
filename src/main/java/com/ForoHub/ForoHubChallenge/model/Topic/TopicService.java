@@ -40,5 +40,21 @@ public class TopicService {
         TopicEntity topicEntity = new TopicEntity(topicDto, user, courseEntity);
         return topicRepository.save(topicEntity);
     }
+    public TopicEntity update(Long id, UpdateTopicDto updateTopicDto){
+        TopicEntity topicEntity = topicRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Topic not found"));
+
+        CourseEntity courseEntity = null;
+        if (updateTopicDto.courseName() != null) {
+            courseEntity = courseRepository.findByName(updateTopicDto.courseName());
+            if (courseEntity == null) {
+                throw new RuntimeException("Course not found");
+            }
+        }
+
+        topicEntity.updateTopic(updateTopicDto, courseEntity);
+        return topicRepository.save(topicEntity);
+    }
+
 
 }
